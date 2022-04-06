@@ -1,0 +1,36 @@
+<!-- this spetial load static method is to use the django language template} -->
+<!-- Those HTML file will be parsed by django before they are  -->
+<!-- returned as pure HTML file to the browser -->
+<!-- That's renders job to do so when you call render() with the html file -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>All Meetups</title>
+	<link rel="stylesheet" href="{% static 'meetups/styles/base.css' %}">
+</head>
+<body>
+	<h1>All Meetups!</h1>
+	<p>Hello World!</p>
+<!-- here I use the if tag which is proper to Django -->
+<!-- I use to to check if show_meetups is true -->
+<!-- the strange double curly braces is entrepolation syntax provided by django-->
+<!-- it is used to display the content stored in a variable	 -->
+<!-- You don't need to indent but you need to endif at the end its also proper to django -->
+<!-- the meetups comes from the dictionary into my for loops
+	 The meetup_item is a local variable in my for loop 
+	 I will use it to loop around all the item in meetup -->
+{% if show_meetups %}
+	{% for meetup_item in meetups %}
+		<p>{{ meetup_item.title }}<p>
+	{% endfor %}
+{% else %}
+	<p>No meetups found!</p>
+{% endif %}
+</body>
+</html>
+
