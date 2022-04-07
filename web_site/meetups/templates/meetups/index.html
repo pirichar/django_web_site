@@ -2,25 +2,20 @@
 <!-- Those HTML file will be parsed by django before they are  -->
 <!-- returned as pure HTML file to the browser -->
 <!-- That's renders job to do so when you call render() with the html file -->
-
+{% extends 'meetups/base/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>All Meetups</title>
-	<link rel="stylesheet" href="{% static 'meetups/styles/base.css' %}">
-	<link rel="stylesheet" href="{% static 'meetups/styles/all-meetups.css' %}"
-</head>
-<body>
-	<header id="main-header">
-		<nav><a href ="/meetups" id="main-logo">DjangoMeetups</a></nav>
-		<h1>We got great meetups coming up!</h1>
-		<p>Find the one that best suits your needs!</p>
-	</header>
-	<main>
+{% block title %} All meetups {% endblock%}
+{% block site_css %}
+<link rel="stylesheet" href="{% static 'meetups/styles/all-meetups.css' %}">
+{% endblock%}
+
+{% block main_heading%}
+We got great meetups coming up!
+{% endblock %}
+{% block header_content %}
+<p>Find the one that best suits your needs!</p>
+{% endblock %}
+{% block body %}
 		<section>
 			<h2>Upcoming Mettups</h2>
 			<ol>
@@ -37,6 +32,9 @@
 							</div>	
 						</div>
 						<div class="meetup-actions">
+							<!-- Here I use the spetial url tag  you don't need to load it as static-->
+							<!-- Url allow you tell django to generate the absolure URL to a specetif Url -->
+							<!-- defined in the url.py file -->
 							<a href="{% url 'meetup-detail' meetup_item.slug %}" class="btn">More Details</a>
 						</div>
 					</article>
@@ -44,7 +42,6 @@
 				{% endfor%}
 			</ol>
 		</section>
-	</main>
-</body>
-</html>
+{% endblock%}
+
 
