@@ -1,0 +1,30 @@
+<!-- This file is a base file  -->
+<!-- we can use django and create blocks in our base templates  -->
+<!-- a bloc is simply created by using the curly brackets and the percent sign and typing block-->
+<!-- you need to give block a name which is just a simple value you add after a space -->
+<!-- finally you have to end the block using endblock -->
+<!-- Finally you can define something in the middle that would act as a fallup title if nothing is provided -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block title%}My meetups{% endblock%}</title>
+	<link rel="stylesheet" href="{% static 'meetups/styles/base.css' %}">
+	{% block site_css%}{% endblock %}
+</head>
+<body>
+	<header id="main-header">
+		<nav><a href ="/meetups" id="main-logo">DjangoMeetups</a></nav>
+		<h1>{% block main_heading%}{% endblock %}</h1>
+		{% block header_content%}{% endblock %}
+	</header>
+	<main>
+		{% block body%}{% endblock %}
+	</main>
+</body>
+</html>
+
