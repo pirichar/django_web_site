@@ -4,7 +4,9 @@
 <!-- That's renders job to do so when you call render() with the html file -->
 {% extends 'meetups/base/base.html' %}
 {% load static %}
+
 {% block title %} All meetups {% endblock%}
+
 {% block site_css %}
 <link rel="stylesheet" href="{% static 'meetups/styles/all-meetups.css' %}">
 {% endblock%}
@@ -12,33 +14,17 @@
 {% block main_heading%}
 We got great meetups coming up!
 {% endblock %}
+
 {% block header_content %}
 <p>Find the one that best suits your needs!</p>
 {% endblock %}
+
 {% block body %}
 		<section>
 			<h2>Upcoming Mettups</h2>
 			<ol>
 				{% for meetup_item in meetups %}
-				<li class="meetup-item">
-					<article>
-						<div class="meetup-summary">
-							<div class="meetup-image">
-								<img src="" alt="">
-							</div>
-							<div class="meetup-details">
-								<h3> {{ meetup_item.title }}</h3>
-								<address>{{ meetup_item.location }}</address>
-							</div>	
-						</div>
-						<div class="meetup-actions">
-							<!-- Here I use the spetial url tag  you don't need to load it as static-->
-							<!-- Url allow you tell django to generate the absolure URL to a specetif Url -->
-							<!-- defined in the url.py file -->
-							<a href="{% url 'meetup-detail' meetup_item.slug %}" class="btn">More Details</a>
-						</div>
-					</article>
-				</li>
+					{% include 'meetups/includes/meetup-item.html' with title=meetup_item.title location=meetup_item.location %}
 				{% endfor%}
 			</ol>
 		</section>
