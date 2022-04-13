@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+# in order to make django serv our image file we have to add stuff
+# we have to concatnate the result of static to urlpatterns
+# we use import static and impot settings to do so
+from django.conf.urls.static import static
+from django.conf import settings
 
 #two different ways of doing things with Articles and meetup
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('meetups.urls')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

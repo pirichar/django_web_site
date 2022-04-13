@@ -1,0 +1,9 @@
+mieux comprendre comment les query method fonctionne, comment marche une base de donnée
+Refaire le tour de tous els ficheir .py pour comprendre qui fait quoi
+
+
+python3 manage.py runserver
+
+To update database:
+python3 manage.py makemigrations
+python3 manpage.py migrate
