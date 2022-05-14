@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from .models import Meetup
-
+from .forms import RegistrationForm
 # Create your views here.
 # I use the Meetup.objects which is a static field not a field defined by us but a field defined by the base class
 #  this object field gives us rich query method
@@ -19,10 +19,19 @@ def index(request):
 def meetup_details(request, meetup_slug):
 	try:
 		selected_meetup = Meetup.objects.get(slug=meetup_slug)
+		if request.method == 'GET':	
+			registration_form = RegistrationForm()
+		else:
+			registration_form = RegistrationForm(request.POST)
+			if registration_form.is_valid():
+				participant = registration_form.save()
+				selected_meetup.participants.add(participant)
+				
+
 		return render(request, 'meetups/meetup-details.html', {
-			'meetup_found': True,
-			'meetup_title': selected_meetup.title,
-			'meetup_description': selected_meetup.description
+		'meetup_found': True,
+		'meetup': selected_meetup,
+		'form' : registration_form
 		})
 	except Exception as exc:
 		return render(request, 'meetups/meetup-details.html', {
