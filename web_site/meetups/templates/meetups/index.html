@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="{% static 'meetups/styles/all-meetups.css' %}">
 {% endblock%}
 
-{% block main_heading%}
+{% block main_heading %}
 We got great meetups coming up!
 {% endblock %}
 
@@ -21,11 +21,11 @@ We got great meetups coming up!
 
 {% block body %}
 		<section>
-			<h2>Upcoming Mettups</h2>
+			<h2>Upcoming Meetups</h2>
 			<ol>
 				{% for meetup_item in meetups %}
 					{% include 'meetups/includes/meetup-item.html' with title=meetup_item.title image=meetup_item.image.url location=meetup_item.location slug=meetup_item.slug %}
-				{% endfor%}
+				{% endfor %}
 			</ol>
 		</section>
 {% endblock%}

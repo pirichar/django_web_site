@@ -1,0 +1,31 @@
+{% extends 'meetups/base/base.html' %}
+
+
+{% comment %} This is to construct some static ulrs {% endcomment %}
+{% load static %} 
+
+{% block title%} You registered successfully! {% endblock %}
+
+
+{% block site_css %}
+<link rel="stylesheet" href="{% static 'meetups/styles/registration-confirmation.css' %}"
+{% endblock %}
+
+
+{% block main_heading %}
+Thanks for signing up !
+{% endblock %}
+
+{% block body %}
+<section id="confirmation">
+	<h2>You registered successfully!</h2>
+	<p>Thanks for signing up - see you at the event !</p>
+	<p>Got questions or cant make it ? <a href="mailto:{{ organizer_email}}">Please contact the organizer</a> ahead of time!</p>
+</section>
+
+<section>
+	<p>Of course you can sign up for more than one meetup!</p>
+	<p><a href="/meetups" class="btn">Explore our meetups</a></p>
+</section>
+
+{% endblock %}
